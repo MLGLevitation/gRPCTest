@@ -1,4 +1,9 @@
-﻿using Grpc.Core;
+﻿using Blog;
+using Greeting;
+using Grpc.Core;
+using Grpc.Reflection;
+using Grpc.Reflection.V1Alpha;
+using Sqrt;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,11 +22,30 @@ namespace gRPCServer
             Server server = null;
             try
             {
+                var reflectionService = new ReflectionServiceImpl(BlogService.Descriptor, ServerReflection.Descriptor);
+
+                var serverCert = File.ReadAllText("ssl/server.crt");
+                var serverKey = File.ReadAllText("ssl/server.key");
+                var keypair = new KeyCertificatePair(serverCert, serverKey);
+                var cacert = File.ReadAllText("ssl/ca.crt");
+
+                var credentials = new SslServerCredentials(new List<KeyCertificatePair>() { keypair }, cacert, true);
+
+
                 server = new Server()
                 {
+                    Services =
+                    {
+                        BlogService.BindService(new BlogServiceImpl()),
+                        ServerReflection.BindService(new ReflectionServiceImpl())
+                    },
+                    //Services = { 
+                    //    GreetingService.BindService(new GreetingServiceImpl())
+                    //},
+                    //Services = { sqrtService.BindService(new SqrtServiceImpl()) },
                     Ports =
                     {
-                        new ServerPort("localhost", port, ServerCredentials.Insecure)
+                        new ServerPort("localhost", port, credentials)
                     }
                 };
                 server.Start();

@@ -16,7 +16,7 @@ namespace gRPCServer
             int number = request.Number;
 
             if (number >= 0) { 
-                return new sqrtResp() { Root = number };    
+                return new sqrtResp() { Root = Math.Sqrt(number) };    
             }
             else {
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "number < 0"));

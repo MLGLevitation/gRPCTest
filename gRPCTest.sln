@@ -5,13 +5,20 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{90FCB2EE-7908-4863-ABB7-2E1CA26A6C54}"
 	ProjectSection(SolutionItems) = preProject
+		Blog.proto = Blog.proto
 		dummy.proto = dummy.proto
+		greeting.proto = greeting.proto
 		sqrt.proto = sqrt.proto
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gRPCClient", "gRPCClient\gRPCClient.csproj", "{87CE7CDE-CC86-42C6-BBF7-D1C8DB9A212D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gRPCServer", "gRPCServer\gRPCServer.csproj", "{B41B2269-FAFB-42EF-A2E4-BA7D204FB583}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0FEDFA9-149C-40B7-8793-45795E5733FC}"
+	ProjectSection(SolutionItems) = preProject
+		G:\ssl.sh = G:\ssl.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
